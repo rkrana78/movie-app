@@ -9,11 +9,12 @@ const SingleContent = (props) => {
         <div className="media">
             <Badge badgeContent={vote_average} color={vote_average > 6 ? "primary" : "secondary"}/>
            <img className="poster" src={ poster_path ?`${img_300}/${poster_path}` : unavailable} alt={title} />
-           <b className="title">{title}</b>
+           <b className="title">{title || name}</b>
            <span className="subTitle">
-               {
-                   media_type === 'tv' ? 'TV Series' : 'Movie'
-               }
+               {/* {
+                   media_type === 'movie' ? 'TV Series' : 'Movie'
+                   
+               } */}
                <span className="subTitle">{first_air_date || release_date}</span>
            </span>
         </div>
