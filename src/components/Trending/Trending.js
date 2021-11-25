@@ -13,7 +13,7 @@ const Trending = () => {
     fetch(url)
     .then(res => res.json())
     .then(data => {
-       
+      // console.log(data)
         setContents(data.results)
     })
     } ,[page])

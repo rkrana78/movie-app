@@ -18,7 +18,7 @@ const TvSeries = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data.results);
+               // console.log(data.results);
                 setContents(data.results);
                 setNumOfPages(data.total_pages);
             })

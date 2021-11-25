@@ -28,7 +28,7 @@
 
 .subTitle {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding-bottom: 3px;
     padding: 0 2px;
     padding-bottom: 3px;

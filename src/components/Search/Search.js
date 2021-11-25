@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchIcon from "@material-ui/icons/Search";
 import {
     Button,
-    createMuiTheme,
+  
     Tab,
     Tabs,
     TextField,
@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import CustomPagination from '../Pagination/CustomPagination';
 import SingleContent from '../SingleContent/SingleContent';
-
+import  {createTheme}  from '@material-ui/core/styles'
 
 const Search = () => {
     const [type, setType] = useState(0);
@@ -20,7 +20,7 @@ const Search = () => {
     const [numOfPages, setNumOfPages] = useState();
 
 
-    const darkTheme = createMuiTheme({
+    const darkTheme = createTheme({
         palette: {
             type: "dark",
             primary: {
@@ -36,7 +36,7 @@ const Search = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data.results);
+               // console.log(data.results);
                 setContents(data.results);
                 setNumOfPages(data.total_pages);
                 

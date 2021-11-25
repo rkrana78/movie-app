@@ -29,7 +29,7 @@ const Genres = (
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data.genres)
+               // console.log(data.genres)
                 setGenres(data.genres)
             })
         // return () => {
