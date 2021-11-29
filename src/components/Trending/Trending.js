@@ -6,26 +6,26 @@ const Trending = () => {
     const [page, setPage] = useState(1);
     const [contents, setContents] = useState([]);
 
-  useEffect(() => {
-      window.scroll(0, 0)
-    const url = `https://api.themoviedb.org/3/trending/all/week?api_key=c1b30049dd035636e32a9002d9816015&page=${page}`
-    console.log(url)
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      // console.log(data)
-        setContents(data.results)
-    })
-    } ,[page])
+    useEffect(() => {
+        window.scroll(0, 0)
+        const url = `https://api.themoviedb.org/3/trending/all/week?api_key=c1b30049dd035636e32a9002d9816015&page=${page}`
+        console.log(url)
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                setContents(data.results)
+            })
+    }, [page])
     return (
         <div>
             <span className="pageTitle">Trending</span>
             <div className="trending">
                 {
-                contents.map(content => <SingleContent content={content} key={content.id}/>)
+                    contents.map(content => <SingleContent content={content} key={content.id} />)
                 }
             </div>
-            <CustomPagination setPage={setPage}/>
+            <CustomPagination setPage={setPage} />
         </div>
     );
 };

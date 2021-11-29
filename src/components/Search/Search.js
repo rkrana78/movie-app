@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import SearchIcon from "@material-ui/icons/Search";
 import {
     Button,
-  
     Tab,
     Tabs,
     TextField,
@@ -10,7 +9,7 @@ import {
 } from "@material-ui/core";
 import CustomPagination from '../Pagination/CustomPagination';
 import SingleContent from '../SingleContent/SingleContent';
-import  {createTheme}  from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 
 const Search = () => {
     const [type, setType] = useState(0);
@@ -29,66 +28,66 @@ const Search = () => {
         },
     });
 
-  
+
     useEffect(() => {
         window.scroll(0, 0);
         const url = `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=c1b30049dd035636e32a9002d9816015&language=en-US&query=${searchText}&page=${page}&include_adult=false`
         fetch(url)
             .then(res => res.json())
             .then(data => {
-               // console.log(data.results);
+                // console.log(data.results);
                 setContents(data.results);
                 setNumOfPages(data.total_pages);
-                
+
             })
-            .catch(error =>console.log(error))
-            
-        
+            .catch(error => console.log(error))
+
+            // eslint-disable-next-line
     }, [type, page, searchText]);
     return (
-         <div>
+        <div>
             <ThemeProvider theme={darkTheme}>
                 <div style={{ display: 'flex', margin: "15px 0" }}>
-                     <TextField
-                         style={{ flex: 1 }}
-                       className="searchBox"
-                         label="Search"
+                    <TextField
+                        style={{ flex: 1 }}
+                        className="searchBox"
+                        label="Search"
                         variant="filled"
-                         onChange={(e) => setSearchText(e.target.value)}
+                        onChange={(e) => setSearchText(e.target.value)}
                     />
-                   {/* <Button onClick={fetch} variant="contained" style={{ marginLeft: 10 }}><SearchIcon /></Button> */}
-        <Button
-        onClick={fetch}
-        variant="contained"
-        style={{ marginLeft: 10 }}
-      >
-        <SearchIcon fontSize="large" />
-      </Button>
-                 </div>
-                 <Tabs value={type} indicatorColor="primary" textColor="primary" onChange={(event, newValue) => {
-                     setType(newValue);
-                     setPage(1);
-                 }}>
-                     <Tab style={{ width: "50%" }} label="Search Movies" />
-                     <Tab style={{ width: "50%" }} label="Search TV Series" />
+                    {/* <Button onClick={fetch} variant="contained" style={{ marginLeft: 10 }}><SearchIcon /></Button> */}
+                    <Button
+                        onClick={fetch}
+                        variant="contained"
+                        style={{ marginLeft: 10 }}
+                    >
+                        <SearchIcon fontSize="large" />
+                    </Button>
+                </div>
+                <Tabs value={type} indicatorColor="primary" textColor="primary" onChange={(event, newValue) => {
+                    setType(newValue);
+                    setPage(1);
+                }}>
+                    <Tab style={{ width: "50%" }} label="Search Movies" />
+                    <Tab style={{ width: "50%" }} label="Search TV Series" />
 
                 </Tabs>
             </ThemeProvider>
-             <div className="trending">
-                 { contents &&
-                     contents.map(content => <SingleContent content={content} key={content.id} />)
-                 }
+            <div className="trending">
+                {contents &&
+                    contents.map(content => <SingleContent content={content} key={content.id} media_type={type ? "tv" : "movie"} />)
+                }
 
-                 {searchText &&
-                     !contents &&
-                     (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
-             </div>
-             {
-                 numOfPages > 1 && (
+                {searchText &&
+                    !contents &&
+                    (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
+            </div>
+            {
+                numOfPages > 1 && (
                     <CustomPagination setPage={setPage} numOfPages={numOfPages} />
-                 )
-             }
-         </div>
+                )
+            }
+        </div>
 
     );
 };

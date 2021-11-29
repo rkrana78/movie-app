@@ -188,7 +188,7 @@ export default function ContentModal({ children, media_type, id }) {
              fetch(url)
                  .then(res => res.json())
                  .then(data => {
-                     console.log(data)
+                    // console.log(data)
                      setVideo(data.results[0]?.key)
                  })
          }, [id, media_type])
